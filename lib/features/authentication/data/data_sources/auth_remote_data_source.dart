@@ -9,9 +9,11 @@ import 'package:meta/meta.dart';
 
 import 'package:http/http.dart' as http;
 
+import '../../domain/entities/authorization_code.dart';
+
 abstract class AuthRemoteDataSource {
   Future<AuthorizationCodeModel> getAuthorizationCode();
-  Future<TokenModel> getToken(String code);
+  Future<TokenModel> getToken(AuthorizationCode code);
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -27,9 +29,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<TokenModel> getToken(String code) async {
+  Future<TokenModel> getToken(AuthorizationCode code) async {
     final response = await http.post(Uri.parse(TokenModel.authUrl),
-        body: _requestBody(code));
+        body: _requestBody(code.code));
     if (response.statusCode == 200) {
       final parsedJson = json.decode(response.body);
       return TokenModel.fromJson(parsedJson);

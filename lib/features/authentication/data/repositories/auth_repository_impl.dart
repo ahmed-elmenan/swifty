@@ -7,6 +7,10 @@ import 'package:dartz/dartz.dart';
 import 'package:swifty/features/authentication/domain/repositories/auth_repository.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../core/error/exceptions.dart';
+import '../../../../core/error/failure.dart';
+import '../../domain/entities/authorization_code.dart';
+
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;
   final NetworkInfo networkInfo;
@@ -16,13 +20,27 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, AuthorizationCode>> getAuthorizationCode() async {
-    // TODO: implement getAuthorizationCode
-    throw UnimplementedError();
+    if (await networkInfo.isConnected) {
+      try {
+        return (Right(await remoteDataSource.getAuthorizationCode()));
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(NetworkFailure());
+    }
   }
 
   @override
-  Future<Either<Failure, Token>> getToken(String code) {
-    // TODO: implement getToken
-    throw UnimplementedError();
+  Future<Either<Failure, Token>> getToken(AuthorizationCode code) async {
+    if (await networkInfo.isConnected) {
+      try {
+        return (Right(await remoteDataSource.getToken(code)));
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      return Left(NetworkFailure());
+    }
   }
 }

@@ -8,21 +8,17 @@ part of 'token_model.dart';
 
 TokenModel _$TokenModelFromJson(Map<String, dynamic> json) {
   return TokenModel(
-    accessToken: json['accessToken'] as String,
-    refreshToken: json['refreshToken'] as String,
-    expiresIn: json['expiresIn'] == null
-        ? null
-        : DateTime.parse(json['expiresIn'] as String),
-    createdAt: json['createdAt'] == null
-        ? null
-        : DateTime.parse(json['createdAt'] as String),
+    access_token: json['access_token'] as String,
+    refresh_token: json['refresh_token'] as String,
+    expires_in: json['expires_in'] as int,
+    created_at: json['created_at'] as int,
   );
 }
 
 Map<String, dynamic> _$TokenModelToJson(TokenModel instance) =>
     <String, dynamic>{
-      'accessToken': instance.accessToken,
-      'refreshToken': instance.refreshToken,
-      'expiresIn': instance.expiresIn?.toIso8601String(),
-      'createdAt': instance.createdAt?.toIso8601String(),
+      'access_token': instance.access_token,
+      'refresh_token': instance.refresh_token,
+      'expires_in': instance.expires_in,
+      'created_at': instance.created_at,
     };

@@ -1,5 +1,6 @@
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
+import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:http/http.dart' as http;
@@ -20,7 +21,7 @@ Future<void> init() async {
 
   // BLoC
   sl.registerFactory(
-      () => AuthenticationBloc(getAuthorizationCode: sl(), getToken: sl()));
+      () => AuthenticationBloc(logger: Logger(), getAuthorizationCode: sl(), getToken: sl()));
 
   // Use Cases
   sl.registerLazySingleton(() => GetAuthorizationCode(sl()));

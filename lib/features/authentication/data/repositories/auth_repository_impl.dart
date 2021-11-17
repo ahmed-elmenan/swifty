@@ -27,6 +27,7 @@ class AuthRepositoryImpl implements AuthRepository {
         return Left(ServerFailure());
       }
     } else {
+      
       return Left(NetworkFailure());
     }
   }
@@ -40,6 +41,7 @@ class AuthRepositoryImpl implements AuthRepository {
         return Left(ServerFailure());
       }
     } else {
+      
       return Left(NetworkFailure());
     }
   }

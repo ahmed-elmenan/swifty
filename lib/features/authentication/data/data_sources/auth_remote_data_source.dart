@@ -8,6 +8,7 @@ import 'package:swifty/features/authentication/data/models/token_model.dart';
 import 'package:meta/meta.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:swifty/features/authentication/domain/entities/token.dart';
 
 import '../../domain/entities/authorization_code.dart';
 

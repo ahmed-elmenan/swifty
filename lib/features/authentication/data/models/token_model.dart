@@ -8,15 +8,15 @@ class TokenModel extends Token {
   static String authUrl = 'https://api.intra.42.fr/v2/oauth/token';
   
   TokenModel(
-      {@required String accessToken,
-      @required String refreshToken,
-      @required DateTime expiresIn,
-      @required DateTime createdAt})
+      {@required String  access_token,
+      @required String  refresh_token,
+      @required int  expires_in,
+      @required int  created_at})
       : super(
-            accessToken: accessToken,
-            refreshToken: refreshToken,
-            expiresIn: expiresIn,
-            createdAt: createdAt);
+            access_token: access_token,
+            refresh_token: refresh_token,
+            expires_in: expires_in,
+            created_at: created_at);
 
   factory TokenModel.fromJson(Map<String, dynamic> json) =>
       _$TokenModelFromJson(json);

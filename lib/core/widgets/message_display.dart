@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 
 class MessageDisplay extends StatelessWidget {
   final String message;
+  final Color messageColor;
 
-  const MessageDisplay({
+   MessageDisplay({
     Key key,
     @required this.message,
+    this.messageColor =  Colors.black54,
+    color,
   }) : super(key: key);
 
   @override

@@ -20,4 +20,7 @@ class TokenModel extends Token {
 
   factory TokenModel.fromJson(Map<String, dynamic> json) =>
       _$TokenModelFromJson(json);
+
+  Map<String, dynamic> toJson()  => _$TokenModelToJson(this);
+
 }

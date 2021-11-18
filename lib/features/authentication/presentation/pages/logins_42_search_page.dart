@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:swifty/features/authentication/data/data_sources/auth_local_data_source.dart';
 import 'package:swifty/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:swifty/features/authentication/presentation/widgets/search_bloc_builder.dart';
 import 'package:swifty/features/authentication/presentation/widgets/search_button.dart';
@@ -21,12 +22,7 @@ class _Logins42SearchPageState extends State<Logins42SearchPage> {
     super.dispose();
   }
 
-  @override
-  void initState() {
-    loginController = TextEditingController();
-
-    super.initState();
-  }
+ 
 
   @override
   Widget build(BuildContext context) {

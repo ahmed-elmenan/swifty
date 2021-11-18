@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:swifty/core/theme/GlobalTheme.dart';
 import 'package:swifty/core/widgets/loading_widget.dart';
 import 'package:swifty/core/widgets/message_display.dart';
 import 'package:swifty/features/authentication/presentation/bloc/authentication_bloc.dart';
@@ -22,10 +23,9 @@ class _SearchBlocBuilderState extends State<SearchBlocBuilder> {
         if (state is Loading) {
           widget = LoadingWidget();
         } else if (state is Authenticated) {
-          print(state.token.access_token);
           widget = MessageDisplay(message: "Auth Success");
         } else if (state is Error) {
-          widget = MessageDisplay(message: state.message);
+          widget = MessageDisplay(message: state.message, color: GlobalTheme.errorColor);
         }
       },
       child: BlocBuilder<AuthenticationBloc, AuthenticationState>(

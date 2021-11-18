@@ -1,4 +1,5 @@
 import 'package:swifty/core/network/network_info.dart';
+import 'package:swifty/features/authentication/data/data_sources/auth_local_data_source.dart';
 import 'package:swifty/features/authentication/data/data_sources/auth_remote_data_source.dart';
 import 'package:swifty/features/authentication/domain/entities/token.dart';
 import 'package:swifty/features/authentication/domain/entities/authorization_code.dart';
@@ -13,21 +14,24 @@ import '../../domain/entities/authorization_code.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;
+  final AuthLocalDataSource localDataSource;
   final NetworkInfo networkInfo;
 
   AuthRepositoryImpl(
-      {@required this.remoteDataSource, @required this.networkInfo});
+      {@required this.localDataSource,
+      @required this.remoteDataSource,
+      @required this.networkInfo});
 
   @override
   Future<Either<Failure, AuthorizationCode>> getAuthorizationCode() async {
     if (await networkInfo.isConnected) {
       try {
-        return (Right(await remoteDataSource.getAuthorizationCode()));
+        final code = await remoteDataSource.getAuthorizationCode();
+        return (Right(code));
       } on ServerException {
         return Left(ServerFailure());
       }
     } else {
-      
       return Left(NetworkFailure());
     }
   }
@@ -36,12 +40,13 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, Token>> getToken(AuthorizationCode code) async {
     if (await networkInfo.isConnected) {
       try {
-        return (Right(await remoteDataSource.getToken(code)));
+        final token = await remoteDataSource.getToken(code);
+        localDataSource.cacheTokenData(token);
+        return (Right(token));
       } on ServerException {
         return Left(ServerFailure());
       }
     } else {
-      
       return Left(NetworkFailure());
     }
   }

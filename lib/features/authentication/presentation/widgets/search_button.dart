@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:swifty/features/authentication/data/data_sources/auth_local_data_source.dart';
+import 'package:swifty/features/authentication/data/models/token_model.dart';
+import 'package:swifty/features/authentication/domain/entities/token.dart';
 import 'package:swifty/features/authentication/presentation/bloc/authentication_bloc.dart';
+
+import '../../../../injection_container.dart';
 
 class SearchButton extends StatefulWidget {
   const SearchButton({Key key}) : super(key: key);
@@ -10,6 +15,15 @@ class SearchButton extends StatefulWidget {
 }
 
 class _SearchButtonState extends State<SearchButton> {
+  AuthLocalDataSource localDataSource;
+
+  @override
+  void initState() {
+    localDataSource = sl<AuthLocalDataSource>();
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,7 +39,10 @@ class _SearchButtonState extends State<SearchButton> {
           ),
         ),
         onPressed: () async {
-          dispatchAuthenticationEvent();
+          Token token = await localDataSource.getCachedTokenData();
+          (token != null)
+              ? dispatchLoginSearchEvent(token)
+              : dispatchAuthenticationEvent();
         },
         style: ElevatedButton.styleFrom(
           // primary: GlobalTheme.kColorLime,
@@ -41,5 +58,11 @@ class _SearchButtonState extends State<SearchButton> {
 
   void dispatchAuthenticationEvent() {
     BlocProvider.of<AuthenticationBloc>(context).add(AuthenticateUser());
+  }
+
+  void dispatchLoginSearchEvent(Token token) {
+    print("cached token =>" + token.access_token);
+
+    // BlocProvider.of<LoginSearchBloc>(context).add(LoginSearch(token));
   }
 }

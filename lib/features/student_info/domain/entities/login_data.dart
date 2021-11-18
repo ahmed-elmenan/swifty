@@ -1,7 +1,7 @@
 import 'package:swifty/features/student_info/data/model/cursus.dart';
 import 'package:swifty/features/student_info/data/model/project_details.dart';
 
-class Student {
+class LoginData {
   final String login;
   final String level;
   final String usualFullName;
@@ -13,7 +13,7 @@ class Student {
   final List<Cursus> cursusUsers;
   final List<ProjectDetails> projectsUsers;
 
-  Student({this.projectsUsers, this.login, this.level, this.usualFullName, this.imageUrl, this.email, this.correctionPoint, this.location, this.wallet, this.cursusUsers}); 
+  LoginData({this.projectsUsers, this.login, this.level, this.usualFullName, this.imageUrl, this.email, this.correctionPoint, this.location, this.wallet, this.cursusUsers}); 
 
 }
 

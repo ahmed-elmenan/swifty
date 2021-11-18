@@ -9,7 +9,7 @@ part 'authorization_code_model.g.dart';
 
 @JsonSerializable()
 class AuthorizationCodeModel extends AuthorizationCode {
-  static String endpointUrl = 'https://api.intra.42.fr/v2/oauth/authorize';
+  static String authorizationEndPoint = 'oauth/authorize';
   static Map<String, String> queryParams = {
     'client_id': CLIENT_ID,
     'redirect_uri': REDIRECT_URI,

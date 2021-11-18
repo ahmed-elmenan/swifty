@@ -5,7 +5,6 @@ import 'package:swifty/core/error/exceptions.dart';
 import 'package:swifty/features/authentication/data/models/token_model.dart';
 import 'package:meta/meta.dart';
 
-
 abstract class AuthLocalDataSource {
   Future<TokenModel> getCachedTokenData();
   Future<void> cacheTokenData(TokenModel tokenModel);
@@ -24,6 +23,7 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
     if (jsonString != null) {
       return Future.value(TokenModel.fromJson(json.decode(jsonString)));
     } else {
+      return null;
       // throw CacheException();
     }
   }
@@ -33,6 +33,4 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
     return sharedPreferences.setString(
         CACHED_TOKEN, json.encode(tokenModel.toJson()));
   }
-
- 
 }

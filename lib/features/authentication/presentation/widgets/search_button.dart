@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:swifty/core/utils/token_utils.dart';
 import 'package:swifty/features/authentication/data/data_sources/auth_local_data_source.dart';
 import 'package:swifty/features/authentication/data/models/token_model.dart';
 import 'package:swifty/features/authentication/domain/entities/token.dart';
@@ -40,9 +41,12 @@ class _SearchButtonState extends State<SearchButton> {
         ),
         onPressed: () async {
           Token token = await localDataSource.getCachedTokenData();
-          (token != null)
-              ? dispatchLoginSearchEvent(token)
-              : dispatchAuthenticationEvent();
+          // (token != null)
+          //     ? dispatchLoginSearchEvent(token)
+          //     : dispatchAuthenticationEvent();
+               dispatchAuthenticationEvent();
+               
+
         },
         style: ElevatedButton.styleFrom(
           // primary: GlobalTheme.kColorLime,

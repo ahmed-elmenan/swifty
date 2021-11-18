@@ -5,7 +5,7 @@ part 'token_model.g.dart';
 
 @JsonSerializable()
 class TokenModel extends Token {
-  static String authUrl = 'https://api.intra.42.fr/v2/oauth/token';
+  static String authEndPoint = 'oauth/token';
   
   TokenModel(
       {@required String  access_token,

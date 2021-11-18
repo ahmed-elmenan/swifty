@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'student_model.dart';
+part of 'login_data_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-StudentModel _$StudentModelFromJson(Map<String, dynamic> json) {
-  return StudentModel(
+LoginDataModel _$LoginDataModelFromJson(Map<String, dynamic> json) {
+  return LoginDataModel(
     imageUrl: json['imageUrl'] as String,
     correctionPoint: json['correctionPoint'] as String,
     wallet: json['wallet'] as String,
@@ -20,10 +20,15 @@ StudentModel _$StudentModelFromJson(Map<String, dynamic> json) {
     login: json['login'] as String,
     level: json['level'] as String,
     email: json['email'] as String,
+    projectsUsers: (json['projectsUsers'] as List)
+        ?.map((e) => e == null
+            ? null
+            : ProjectDetails.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
   );
 }
 
-Map<String, dynamic> _$StudentModelToJson(StudentModel instance) =>
+Map<String, dynamic> _$LoginDataModelToJson(LoginDataModel instance) =>
     <String, dynamic>{
       'login': instance.login,
       'level': instance.level,
@@ -34,4 +39,5 @@ Map<String, dynamic> _$StudentModelToJson(StudentModel instance) =>
       'location': instance.location,
       'wallet': instance.wallet,
       'cursusUsers': instance.cursusUsers,
+      'projectsUsers': instance.projectsUsers,
     };

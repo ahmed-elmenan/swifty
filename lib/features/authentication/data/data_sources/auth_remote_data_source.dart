@@ -22,6 +22,7 @@ abstract class AuthRemoteDataSource {
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final http.Client client;
   Logger logger;
+
   AuthRemoteDataSourceImpl({@required this.client}) {
     logger = sl<Logger>();
   }
@@ -35,7 +36,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<TokenModel> getToken(AuthorizationCode code) async {
-    final response = await http.post(Uri.parse(TokenModel.authUrl),
+    final response = await http.post(
+        Uri.parse(API_URL + TokenModel.authEndPoint),
         body: _requestBody(code.code));
     if (response.statusCode == 200) {
       final parsedJson = json.decode(response.body);
@@ -47,7 +49,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   String _urlRefactor() =>
-      AuthorizationCodeModel.endpointUrl +
+      API_URL + AuthorizationCodeModel.authorizationEndPoint +
       '?' +
       Uri(queryParameters: AuthorizationCodeModel.queryParams).query;
 

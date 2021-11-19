@@ -1,21 +1,20 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'skill.dart';
+part of 'cursus_details_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Skill _$SkillFromJson(Map<String, dynamic> json) {
-  return Skill(
-    json['id'] as int,
-    json['name'] as String,
-    (json['level'] as num)?.toDouble(),
+CursusDetails _$CursusDetailsFromJson(Map<String, dynamic> json) {
+  return CursusDetails(
+    id: json['id'] as int,
+    name: json['name'] as int,
   );
 }
 
-Map<String, dynamic> _$SkillToJson(Skill instance) => <String, dynamic>{
+Map<String, dynamic> _$CursusDetailsToJson(CursusDetails instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'level': instance.level,
     };

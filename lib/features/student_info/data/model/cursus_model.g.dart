@@ -1,26 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'cursus.dart';
+part of 'cursus_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Cursus _$CursusFromJson(Map<String, dynamic> json) {
-  return Cursus(
+CursusModel _$CursusModelFromJson(Map<String, dynamic> json) {
+  return CursusModel(
     cursus: json['cursus'] == null
         ? null
         : CursusDetails.fromJson(json['cursus'] as Map<String, dynamic>),
     level: (json['level'] as num)?.toDouble(),
     skills: (json['skills'] as List)
-        ?.map(
-            (e) => e == null ? null : Skill.fromJson(e as Map<String, dynamic>))
+        ?.map((e) =>
+            e == null ? null : SkillModel.fromJson(e as Map<String, dynamic>))
         ?.toList(),
     grade: json['grade'],
   );
 }
 
-Map<String, dynamic> _$CursusToJson(Cursus instance) => <String, dynamic>{
+Map<String, dynamic> _$CursusModelToJson(CursusModel instance) =>
+    <String, dynamic>{
       'grade': instance.grade,
       'level': instance.level,
       'skills': instance.skills,

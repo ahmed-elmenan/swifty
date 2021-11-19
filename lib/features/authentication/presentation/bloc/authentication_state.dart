@@ -3,8 +3,6 @@ part of 'authentication_bloc.dart';
 abstract class AuthenticationState {
   List propreties = const <dynamic>[];
   AuthenticationState([propreties]);
-
-  
 }
 
 class AuthenticationInitial extends AuthenticationState {}

@@ -1,18 +1,18 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:swifty/features/student_info/data/model/project.dart';
+import 'package:swifty/features/student_info/data/model/project_model.dart';
 
-part 'project_details.g.dart';
+part 'project_details_model.g.dart';
 
 @JsonSerializable()
-class ProjectDetails {
+class ProjectDetailsModel {
   int id;
   int occurrence;
   int finalMark;
   String status;
   bool validated;
   int currentTeamId;
-  Project project;
+  ProjectModel project;
   List<int> cursusIds;
   String markedAt;
   bool marked;
@@ -20,7 +20,7 @@ class ProjectDetails {
   String createdAt;
   String updatedAt;
 
-  ProjectDetails({
+  ProjectDetailsModel({
       this.id,
       this.occurrence,
       this.finalMark,
@@ -36,5 +36,5 @@ class ProjectDetails {
       this.updatedAt
   });
 
-  factory ProjectDetails.fromJson(Map<String, dynamic> json) => _$ProjectDetailsFromJson(json);
+  factory ProjectDetailsModel.fromJson(Map<String, dynamic> json) => _$ProjectDetailsModelFromJson(json);
 }

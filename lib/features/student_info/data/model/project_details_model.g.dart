@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'project_details.dart';
+part of 'project_details_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ProjectDetails _$ProjectDetailsFromJson(Map<String, dynamic> json) {
-  return ProjectDetails(
+ProjectDetailsModel _$ProjectDetailsModelFromJson(Map<String, dynamic> json) {
+  return ProjectDetailsModel(
     id: json['id'] as int,
     occurrence: json['occurrence'] as int,
     finalMark: json['finalMark'] as int,
@@ -16,7 +16,7 @@ ProjectDetails _$ProjectDetailsFromJson(Map<String, dynamic> json) {
     currentTeamId: json['currentTeamId'] as int,
     project: json['project'] == null
         ? null
-        : Project.fromJson(json['project'] as Map<String, dynamic>),
+        : ProjectModel.fromJson(json['project'] as Map<String, dynamic>),
     cursusIds: (json['cursusIds'] as List)?.map((e) => e as int)?.toList(),
     markedAt: json['markedAt'] as String,
     marked: json['marked'] as bool,
@@ -26,7 +26,8 @@ ProjectDetails _$ProjectDetailsFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$ProjectDetailsToJson(ProjectDetails instance) =>
+Map<String, dynamic> _$ProjectDetailsModelToJson(
+        ProjectDetailsModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'occurrence': instance.occurrence,

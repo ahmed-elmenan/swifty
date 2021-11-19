@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'project.dart';
+part of 'project_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Project _$ProjectFromJson(Map<String, dynamic> json) {
-  return Project(
+ProjectModel _$ProjectModelFromJson(Map<String, dynamic> json) {
+  return ProjectModel(
     id: json['id'] as int,
     name: json['name'] as String,
     slug: json['slug'] as String,
@@ -15,7 +15,8 @@ Project _$ProjectFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$ProjectToJson(Project instance) => <String, dynamic>{
+Map<String, dynamic> _$ProjectModelToJson(ProjectModel instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'slug': instance.slug,

@@ -13,7 +13,7 @@ LoginDataModel _$LoginDataModelFromJson(Map<String, dynamic> json) {
     wallet: json['wallet'] as String,
     cursusUsers: (json['cursusUsers'] as List)
         ?.map((e) =>
-            e == null ? null : Cursus.fromJson(e as Map<String, dynamic>))
+            e == null ? null : CursusModel.fromJson(e as Map<String, dynamic>))
         ?.toList(),
     usualFullName: json['usualFullName'] as String,
     location: json['location'] as String,
@@ -23,7 +23,7 @@ LoginDataModel _$LoginDataModelFromJson(Map<String, dynamic> json) {
     projectsUsers: (json['projectsUsers'] as List)
         ?.map((e) => e == null
             ? null
-            : ProjectDetails.fromJson(e as Map<String, dynamic>))
+            : ProjectDetailsModel.fromJson(e as Map<String, dynamic>))
         ?.toList(),
   );
 }

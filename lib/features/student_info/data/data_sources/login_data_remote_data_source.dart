@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:logger/logger.dart';
 import 'package:swifty/core/consts/api_identifiers.dart';
@@ -21,16 +23,18 @@ class LoginDataRemoteDataSourceImpl implements LoginDataRemoteDataSource {
 
   @override
   Future<LoginDataModel> getStudentData(String login, Token token) async {
-    
-      final header = {
-        'Authorization': 'Bearer ${token.access_token}',
-      };
-      final response = await http.get(Uri.parse(API_URL + token.access_token),
-          headers: header);
-      if (response.statusCode == 200) {
-        // convert data from json logic here
-      } else {
-        throw ServerException();
-      }
+    final header = {
+      'Authorization': 'Bearer ${token.access_token}',
+    };
+    final response = await http.get(Uri.parse(API_URL + token.access_token),
+        headers: header);
+    if (response.statusCode == 200) {
+      // convert data from json logic here
+      final parsedJson = json.decode(response.body);
+      final loginData = LoginDataModel.fromJson(parsedJson);
+      return loginData;
+    } else {
+      throw ServerException();
+    }
   }
 }

@@ -22,8 +22,6 @@ class _Logins42SearchPageState extends State<Logins42SearchPage> {
     super.dispose();
   }
 
- 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

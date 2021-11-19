@@ -44,9 +44,7 @@ class _SearchButtonState extends State<SearchButton> {
           // (token != null)
           //     ? dispatchLoginSearchEvent(token)
           //     : dispatchAuthenticationEvent();
-               dispatchAuthenticationEvent();
-               
-
+          dispatchAuthenticationEvent();
         },
         style: ElevatedButton.styleFrom(
           // primary: GlobalTheme.kColorLime,
@@ -62,6 +60,7 @@ class _SearchButtonState extends State<SearchButton> {
 
   void dispatchAuthenticationEvent() {
     BlocProvider.of<AuthenticationBloc>(context).add(AuthenticateUser());
+    // BlocProvider.of<AuthenticationBloc>(context).emit(Authenticati);
   }
 
   void dispatchLoginSearchEvent(Token token) {

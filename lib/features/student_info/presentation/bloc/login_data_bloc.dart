@@ -37,12 +37,12 @@ class LoginDataBloc extends Bloc<LoginDataEvent, LoginDataState> {
   @override
   Stream<LoginDataState> mapEventToState(LoginDataEvent event) async* {
     if (event is FetchLoginData) {
-      yield Loading();
+      yield LoginDataLoading();
       final loginDataOrFailure = await getLoginData(event.login, event.token);
       yield* loginDataOrFailure.fold((failure) async* {
-        yield Error(message: ErrorUtils.mapFailureToMessage(failure));
+        yield LoginDataError(message: ErrorUtils.mapFailureToMessage(failure));
       }, (loginData) async* {
-        yield Loaded(loginData: loginData);
+        yield LoginDataLoaded(loginData: loginData);
       });
     }
   }

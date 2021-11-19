@@ -7,16 +7,16 @@ abstract class LoginDataState {
 
 class LoginDataStateInitial extends LoginDataState {}
 
-class Loading extends LoginDataState {}
+class LoginDataLoading extends LoginDataState {}
 
-class Loaded extends LoginDataState {
+class LoginDataLoaded extends LoginDataState {
   final LoginData loginData;
 
-  Loaded({@required this.loginData}) : super([loginData]);
+  LoginDataLoaded({@required this.loginData}) : super([loginData]);
 }
 
-class Error extends LoginDataState {
+class LoginDataError extends LoginDataState {
   final String message;
 
-  Error({@required this.message}) : super([message]);
+  LoginDataError({@required this.message}) : super([message]);
 }

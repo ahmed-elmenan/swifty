@@ -2,14 +2,14 @@ import 'dart:convert';
 
 import 'package:flutter_web_auth/flutter_web_auth.dart';
 import 'package:logger/logger.dart';
-import 'package:swifty/core/consts/api_identifiers.dart';
-import 'package:swifty/core/error/exceptions.dart';
-import 'package:swifty/features/authentication/data/models/authorization_code_model.dart';
-import 'package:swifty/features/authentication/data/models/token_model.dart';
+import '../../../../core/consts/api_identifiers.dart';
+import '../../../../core/error/exceptions.dart';
+import '../models/authorization_code_model.dart';
+import '../models/token_model.dart';
 import 'package:meta/meta.dart';
 
 import 'package:http/http.dart' as http;
-import 'package:swifty/features/authentication/domain/entities/token.dart';
+import '../../domain/entities/token.dart';
 
 import '../../../../injection_container.dart';
 import '../../domain/entities/authorization_code.dart';

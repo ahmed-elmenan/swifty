@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:swifty/core/error/exceptions.dart';
-import 'package:swifty/features/authentication/data/models/token_model.dart';
+import '../../../../core/error/exceptions.dart';
+import '../models/token_model.dart';
 import 'package:meta/meta.dart';
 
 abstract class AuthLocalDataSource {

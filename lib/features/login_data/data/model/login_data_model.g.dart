@@ -8,19 +8,19 @@ part of 'login_data_model.dart';
 
 LoginDataModel _$LoginDataModelFromJson(Map<String, dynamic> json) {
   return LoginDataModel(
-    imageUrl: json['imageUrl'] as String,
-    correctionPoint: json['correctionPoint'] as String,
-    wallet: json['wallet'] as String,
-    cursusUsers: (json['cursusUsers'] as List)
+    image_url: json['image_url'] as String,
+    correction_point: json['correction_point'] as int,
+    wallet: json['wallet'] as int,
+    cursus_users: (json['cursus_users'] as List)
         ?.map((e) =>
             e == null ? null : CursusModel.fromJson(e as Map<String, dynamic>))
         ?.toList(),
-    usualFullName: json['usualFullName'] as String,
+    usual_full_name: json['usual_full_name'] as String,
     location: json['location'] as String,
     login: json['login'] as String,
     level: json['level'] as String,
     email: json['email'] as String,
-    projectsUsers: (json['projectsUsers'] as List)
+    projects_users: (json['projects_users'] as List)
         ?.map((e) => e == null
             ? null
             : ProjectDetailsModel.fromJson(e as Map<String, dynamic>))
@@ -32,12 +32,12 @@ Map<String, dynamic> _$LoginDataModelToJson(LoginDataModel instance) =>
     <String, dynamic>{
       'login': instance.login,
       'level': instance.level,
-      'usualFullName': instance.usualFullName,
-      'imageUrl': instance.imageUrl,
+      'usual_full_name': instance.usual_full_name,
+      'image_url': instance.image_url,
       'email': instance.email,
-      'correctionPoint': instance.correctionPoint,
+      'correction_point': instance.correction_point,
       'location': instance.location,
       'wallet': instance.wallet,
-      'cursusUsers': instance.cursusUsers,
-      'projectsUsers': instance.projectsUsers,
+      'cursus_users': instance.cursus_users,
+      'projects_users': instance.projects_users,
     };

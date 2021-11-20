@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:swifty/core/error/failure.dart';
-import 'package:swifty/features/authentication/domain/entities/authorization_code.dart';
-import 'package:swifty/features/authentication/domain/repositories/auth_repository.dart';
+import '../../../../core/error/failure.dart';
+import '../entities/authorization_code.dart';
+import '../repositories/auth_repository.dart';
 
 class GetAuthorizationCode {
   final AuthRepository repository;

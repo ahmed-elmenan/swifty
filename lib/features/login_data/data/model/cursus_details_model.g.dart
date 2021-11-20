@@ -9,7 +9,7 @@ part of 'cursus_details_model.dart';
 CursusDetails _$CursusDetailsFromJson(Map<String, dynamic> json) {
   return CursusDetails(
     id: json['id'] as int,
-    name: json['name'] as int,
+    name: json['name'] as String,
   );
 }
 

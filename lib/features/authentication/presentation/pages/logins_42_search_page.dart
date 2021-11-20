@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:swifty/features/authentication/data/data_sources/auth_local_data_source.dart';
-import 'package:swifty/features/authentication/presentation/bloc/authentication_bloc.dart';
-import 'package:swifty/features/authentication/presentation/widgets/search_bloc_builder.dart';
-import 'package:swifty/features/authentication/presentation/widgets/search_button.dart';
+import 'package:swifty/features/login_data/presentation/bloc/login_data_bloc.dart';
+import 'package:swifty/features/login_data/presentation/widgets/login_data_bloc_builder.dart';
+import '../../data/data_sources/auth_local_data_source.dart';
+import '../bloc/authentication_bloc.dart';
+import '../widgets/search_bloc_builder.dart';
+import '../widgets/search_button.dart';
 
 import '../../../../injection_container.dart';
 
@@ -13,20 +15,21 @@ class Logins42SearchPage extends StatefulWidget {
 }
 
 class _Logins42SearchPageState extends State<Logins42SearchPage> {
-  TextEditingController loginController;
-
-  @override
-  void dispose() {
-    loginController.dispose();
-
-    super.dispose();
-  }
+  String login;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocProvider(
-        create: (context) => sl<AuthenticationBloc>(),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => sl<AuthenticationBloc>(),
+            
+          ),
+          BlocProvider(
+            create: (context) => sl<LoginDataBloc>(),
+          ),
+        ],
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 15),
           color: Colors.grey[50],
@@ -41,7 +44,6 @@ class _Logins42SearchPageState extends State<Logins42SearchPage> {
                     borderRadius: BorderRadius.circular(32),
                   ),
                   child: TextField(
-                    controller: loginController,
                     decoration: InputDecoration(
                       hintText: "enter a 42 login",
                       hintStyle: TextStyle(
@@ -50,11 +52,17 @@ class _Logins42SearchPageState extends State<Logins42SearchPage> {
                       // filled: true,
                       border: InputBorder.none,
                     ),
+                    onChanged: (value) {
+                      setState(() {
+                        login = value;
+                      });
+                    },
                   ),
                 ),
               ),
-              SearchBlocBuilder(),
-              SearchButton()
+              LoginDataBlocBuilder(login: login),
+              SearchBlocBuilder(login: login),
+              SearchButton(login: login)
             ],
           ),
         ),

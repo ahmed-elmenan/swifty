@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logger/logger.dart';
-import 'package:swifty/core/error/error_utils.dart';
-import 'package:swifty/features/authentication/domain/entities/token.dart';
-import 'package:swifty/features/student_info/domain/entities/login_data.dart';
-import 'package:swifty/features/student_info/domain/usecases/get_login_data.dart';
+import '../../../../core/error/error_utils.dart';
+import '../../../authentication/domain/entities/token.dart';
+import '../../../login_data/domain/entities/login_data.dart';
+import '../../../login_data/domain/usecases/get_login_data.dart';
 
 part 'login_data_event.dart';
 part 'login_data_state.dart';

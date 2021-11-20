@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:swifty/features/authentication/domain/entities/token.dart';
+import '../../domain/entities/token.dart';
 
 part 'token_model.g.dart';
 

@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:swifty/features/student_info/data/model/skill_model.dart';
+import '../../../login_data/data/model/skill_model.dart';
 
 import 'cursus_details_model.dart';
 
@@ -11,8 +11,9 @@ class CursusModel {
   final double level;
   final List<SkillModel> skills;
   final CursusDetails cursus;
-  
+
   CursusModel({this.cursus, this.level, this.skills, this.grade});
 
-  factory CursusModel.fromJson(Map<String, dynamic> json) => _$CursusModelFromJson(json);
+  factory CursusModel.fromJson(Map<String, dynamic> json) =>
+      _$CursusModelFromJson(json);
 }

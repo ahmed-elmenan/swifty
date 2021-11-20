@@ -1,11 +1,11 @@
-import 'package:swifty/core/network/network_info.dart';
-import 'package:swifty/features/authentication/data/data_sources/auth_local_data_source.dart';
-import 'package:swifty/features/authentication/data/data_sources/auth_remote_data_source.dart';
-import 'package:swifty/features/authentication/domain/entities/token.dart';
-import 'package:swifty/features/authentication/domain/entities/authorization_code.dart';
-import 'package:swifty/core/error/failure.dart';
+import '../../../../core/network/network_info.dart';
+import '../data_sources/auth_local_data_source.dart';
+import '../data_sources/auth_remote_data_source.dart';
+import '../../domain/entities/token.dart';
+import '../../domain/entities/authorization_code.dart';
+import '../../../../core/error/failure.dart';
 import 'package:dartz/dartz.dart';
-import 'package:swifty/features/authentication/domain/repositories/auth_repository.dart';
+import '../../domain/repositories/auth_repository.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../core/error/exceptions.dart';

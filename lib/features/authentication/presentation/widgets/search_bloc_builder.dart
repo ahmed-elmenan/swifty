@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:swifty/core/theme/GlobalTheme.dart';
-import 'package:swifty/core/utils/token_utils.dart';
-import 'package:swifty/core/widgets/loading_widget.dart';
-import 'package:swifty/core/widgets/message_display.dart';
-import 'package:swifty/features/authentication/presentation/bloc/authentication_bloc.dart';
-import 'package:swifty/features/authentication/presentation/widgets/search_button.dart';
-import 'package:swifty/features/student_info/presentation/bloc/login_data_bloc.dart';
+import 'package:swifty/features/login_data/presentation/widgets/login_data_bloc_builder.dart';
+import '../../../../core/theme/GlobalTheme.dart';
+import '../../../../core/utils/token_utils.dart';
+import '../../../../core/widgets/loading_widget.dart';
+import '../../../../core/widgets/message_display.dart';
+import '../bloc/authentication_bloc.dart';
+import 'search_button.dart';
+import '../../../login_data/presentation/bloc/login_data_bloc.dart';
 
 import '../../../../injection_container.dart';
 
 class SearchBlocBuilder extends StatefulWidget {
-  const SearchBlocBuilder({Key key}) : super(key: key);
+  final String login;
+  SearchBlocBuilder({Key key, this.login}) : super(key: key);
 
   @override
   _SearchBlocBuilderState createState() => _SearchBlocBuilderState();
@@ -20,29 +22,29 @@ class SearchBlocBuilder extends StatefulWidget {
 class _SearchBlocBuilderState extends State<SearchBlocBuilder> {
   @override
   Widget build(BuildContext context) {
-    Widget widget;
+    Widget content;
     return Container(
         child: BlocListener<AuthenticationBloc, AuthenticationState>(
       listener: (context, state) {
         if (state is Loading) {
-          widget = LoadingWidget();
+          content = LoadingWidget();
         } else if (state is Authenticated) {
-          widget = BlocProvider(
-            create: (context) => sl<LoginDataBloc>(),
-            // child: LoginDataBlocBuilder(),
-          );
+          content = Container();
+           BlocProvider.of<LoginDataBloc>(context)
+        .add(FetchLoginData(widget.login, state.token));
           // dispatch search Event to push
         } else if (state is Error) {
-          widget = MessageDisplay(
+          content = MessageDisplay(
               message: state.message, color: GlobalTheme.errorColor);
         }
       },
       child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+        //  buildWhen: (p, c) => p.propreties != c.propreties,
         builder: (context, state) {
           if (state is AuthenticationInitial) {
-            widget = Container();
+            content = Container();
           }
-          return widget;
+          return content;
         },
       ),
     ));

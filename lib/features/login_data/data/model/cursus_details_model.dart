@@ -5,7 +5,7 @@ part 'cursus_details_model.g.dart';
 @JsonSerializable()
 class CursusDetails {
   final int id;
-  final int name;
+  final String name;
 
 
   CursusDetails({this.id, this.name});

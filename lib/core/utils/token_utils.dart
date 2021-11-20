@@ -1,4 +1,4 @@
-import 'package:swifty/features/authentication/domain/entities/token.dart';
+import '../../features/authentication/domain/entities/token.dart';
 
 class TokenUtils {
   static bool checkAccessTokenExpiration(Token token) {

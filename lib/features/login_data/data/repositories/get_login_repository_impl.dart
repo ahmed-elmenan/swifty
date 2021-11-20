@@ -1,13 +1,13 @@
-import 'package:swifty/core/network/network_info.dart';
-import 'package:swifty/core/utils/token_utils.dart';
-import 'package:swifty/features/student_info/data/data_sources/login_data_remote_data_source.dart';
-import 'package:swifty/features/student_info/domain/entities/login_data.dart';
-import 'package:swifty/features/authentication/domain/entities/token.dart';
-import 'package:swifty/core/error/failure.dart';
+import '../../../../core/network/network_info.dart';
+import '../../../../core/utils/token_utils.dart';
+import '../../../login_data/data/data_sources/login_data_remote_data_source.dart';
+import '../../../login_data/domain/entities/login_data.dart';
+import '../../../authentication/domain/entities/token.dart';
+import '../../../../core/error/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
 
-import 'package:swifty/features/student_info/domain/repositories/login_data_repository.dart';
+import '../../../login_data/domain/repositories/login_data_repository.dart';
 
 class LoginDataRepositoryImpl implements LoginDataRepository {
   final LoginDataRemoteDataSource remoteDataSource;

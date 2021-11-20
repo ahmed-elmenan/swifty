@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:swifty/core/error/failure.dart';
-import 'package:swifty/features/authentication/domain/entities/authorization_code.dart';
-import 'package:swifty/features/authentication/domain/entities/token.dart';
+import '../../../../core/error/failure.dart';
+import '../entities/authorization_code.dart';
+import '../entities/token.dart';
 
 import '../entities/authorization_code.dart';
 

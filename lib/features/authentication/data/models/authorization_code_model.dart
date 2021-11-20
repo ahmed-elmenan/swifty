@@ -1,8 +1,8 @@
 
 
 import 'package:flutter/cupertino.dart';
-import 'package:swifty/core/consts/api_identifiers.dart';
-import 'package:swifty/features/authentication/domain/entities/authorization_code.dart';
+import '../../../../core/consts/api_identifiers.dart';
+import '../../domain/entities/authorization_code.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'authorization_code_model.g.dart';

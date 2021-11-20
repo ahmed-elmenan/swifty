@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:swifty/core/error/error_utils.dart';
-import 'package:swifty/core/error/failure.dart';
+import '../../../../core/error/error_utils.dart';
+import '../../../../core/error/failure.dart';
 
 import '../../domain/entities/token.dart';
 import '../../domain/usecases/get_authorization_code.dart';

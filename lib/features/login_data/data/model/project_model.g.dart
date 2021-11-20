@@ -11,7 +11,7 @@ ProjectModel _$ProjectModelFromJson(Map<String, dynamic> json) {
     id: json['id'] as int,
     name: json['name'] as String,
     slug: json['slug'] as String,
-    parentId: json['parentId'] as int,
+    parent_id: json['parent_id'] as int,
   );
 }
 
@@ -20,5 +20,5 @@ Map<String, dynamic> _$ProjectModelToJson(ProjectModel instance) =>
       'id': instance.id,
       'name': instance.name,
       'slug': instance.slug,
-      'parentId': instance.parentId,
+      'parent_id': instance.parent_id,
     };

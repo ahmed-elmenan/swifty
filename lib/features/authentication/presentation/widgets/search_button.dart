@@ -45,8 +45,7 @@ class _SearchButtonState extends State<SearchButton> {
           Token token = await localDataSource.getCachedTokenData();
           (token != null)
           ? dispatchLoginSearchEvent(widget.login, token)
-                    : dispatchAuthenticationEvent();
-          // dispatchAuthenticationEvent();          
+                    : dispatchAuthenticationEvent(widget.login);
           
         },
         style: ElevatedButton.styleFrom(
@@ -59,8 +58,8 @@ class _SearchButtonState extends State<SearchButton> {
     );
   }
 
-  void dispatchAuthenticationEvent() {
-    BlocProvider.of<AuthenticationBloc>(context).add(AuthenticateUser());
+  void dispatchAuthenticationEvent(String login) {
+    BlocProvider.of<AuthenticationBloc>(context).add(AuthenticateUser(login: login));
   }
 
   void dispatchLoginSearchEvent(String login, Token token) {

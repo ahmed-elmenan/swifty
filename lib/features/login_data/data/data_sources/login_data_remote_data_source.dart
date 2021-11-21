@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 import 'package:logger/logger.dart';
+import 'package:swifty/features/login_data/domain/entities/login_data.dart';
 import '../../../../core/consts/api_identifiers.dart';
 import '../../../../core/error/exceptions.dart';
 import '../../../authentication/domain/entities/token.dart';
@@ -32,6 +33,8 @@ class LoginDataRemoteDataSourceImpl implements LoginDataRemoteDataSource {
       // logger.d(parsedJson);
       final loginData = LoginDataModel.fromJson(parsedJson);
       return loginData;
+    } else if (response.statusCode == 404) {
+      throw LoginNotFoundException();
     } else {
       throw ServerException();
     }

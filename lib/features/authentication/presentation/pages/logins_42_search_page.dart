@@ -15,7 +15,7 @@ class Logins42SearchPage extends StatefulWidget {
 }
 
 class _Logins42SearchPageState extends State<Logins42SearchPage> {
-  String login;
+  String login = "";
 
   @override
   Widget build(BuildContext context) {

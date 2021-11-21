@@ -12,7 +12,8 @@ class LoginData {
   final int wallet;
   final List<CursusModel> cursus_users;
   final List<ProjectDetailsModel> projects_users;
-
+  int loginNotFound;
+  
   LoginData(
       {this.projects_users,
       this.login,

@@ -4,6 +4,7 @@ import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:http/http.dart' as http;
+import 'core/utils/input_converter.dart';
 import 'features/login_data/domain/usecases/get_login_data.dart';
 
 import 'core/network/network_info.dart';
@@ -44,7 +45,8 @@ Future<void> init() async {
 
   //! Features - Login Data
   // BLoC
-  sl.registerFactory(() => LoginDataBloc(logger: sl(), getLoginData: sl()));
+  sl.registerFactory(() =>
+      LoginDataBloc(inputConverter: sl(), logger: sl(), getLoginData: sl()));
 
   // Use Cases
   sl.registerLazySingleton(() => GetLoginData(sl()));
@@ -60,7 +62,7 @@ Future<void> init() async {
   //! Core
   sl.registerLazySingleton<NetworkInfo>(
       () => NetworkInfoImpl(connectionChecker: sl()));
-
+  sl.registerLazySingleton(() => InputConverter());
 //! External
   final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);

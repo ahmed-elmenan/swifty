@@ -66,7 +66,7 @@ Widget _builderContent(LoginDataState state) {
         BlocProvider.of<AuthenticationBloc>(context).add(AuthenticateUser(login: widget.login));
     } 
     content =
-        MessageDisplay(message: state.message, color: GlobalTheme.errorColor);
+        MessageDisplay(message: state.message, messageColor: GlobalTheme.errorColor);
   }
   return content;
 }

@@ -44,7 +44,7 @@ class _SearchBlocBuilderState extends State<SearchBlocBuilder> {
           .add(FetchLoginData(widget.login, state.token));
     } else if (state is Error) {
       content =
-          MessageDisplay(message: state.message, color: GlobalTheme.errorColor);
+          MessageDisplay(message: state.message, messageColor: GlobalTheme.errorColor);
     }
     return content;
   }

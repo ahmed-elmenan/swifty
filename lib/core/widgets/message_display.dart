@@ -4,11 +4,10 @@ class MessageDisplay extends StatelessWidget {
   final String message;
   final Color messageColor;
 
-   MessageDisplay({
+  MessageDisplay({
     Key key,
     @required this.message,
-    this.messageColor =  Colors.black54,
-    color,
+    this.messageColor,
   }) : super(key: key);
 
   @override
@@ -19,6 +18,7 @@ class MessageDisplay extends StatelessWidget {
         child: Text(
           message,
           textAlign: TextAlign.center,
+          style: TextStyle(color: messageColor),
         ),
       ),
     );

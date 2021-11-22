@@ -24,14 +24,12 @@ class _Logins42SearchPageState extends State<Logins42SearchPage> {
         providers: [
           BlocProvider(
             create: (context) => sl<AuthenticationBloc>(),
-            
           ),
           BlocProvider(
             create: (context) => sl<LoginDataBloc>(),
           ),
         ],
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 15),
           color: Colors.grey[50],
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

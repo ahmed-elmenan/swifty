@@ -40,14 +40,15 @@ class _LoginProfilPageState extends State<LoginProfilPage> {
                 actions: <Widget>[
                   LoginAvatar(imageUrl: widget.loginData.image_url),
                 ],
-                expandedHeight: size.height / 3,
+                expandedHeight: size.height / 3 + 50,
                 floating: true,
                 pinned: true,
                 snap: true,
                 elevation: 50,
                 flexibleSpace: FlexibleSpaceBar(
                   centerTitle: true,
-                  background: LoginInfoHeader(loginData: widget.loginData),
+                  background: Center(
+                      child: LoginInfoHeader(loginData: widget.loginData)),
                 ),
               ),
               new SliverList(

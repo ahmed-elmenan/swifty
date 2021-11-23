@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swifty/core/theme/GlobalTheme.dart';
 import 'package:swifty/features/login_data/domain/entities/login_data.dart';
 import 'package:swifty/features/login_data/presentation/widgets/personal_info_raw.dart';
 
@@ -8,11 +9,13 @@ class LoginPersonalInfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       width: double.infinity,
-      decoration: BoxDecoration(color: Colors.black.withOpacity(0.6)),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: GlobalTheme.secondaryBgColor,
+      ),
       child: Column(
         children: [
           PersonalInfoRow(info: "Location", value: loginData.location),

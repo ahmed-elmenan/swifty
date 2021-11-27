@@ -57,7 +57,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         'grant_type': 'authorization_code',
         'client_id': CLIENT_ID,
         'client_secret': CLIENT_SECRET,
-        'redirect_uri': 'ahelmen://app',
+        'redirect_uri': REDIRECT_URI,
         'code': code,
         'state': '123',
       };

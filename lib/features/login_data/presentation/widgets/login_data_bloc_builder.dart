@@ -23,8 +23,11 @@ class LoginDataBlocBuilder extends StatefulWidget {
 }
 
 class _LoginDataBlocBuilderState extends State<LoginDataBlocBuilder> {
+  int attempt;
+
   @override
   void initState() {
+    attempt = 1;
     super.initState();
   }
 
@@ -42,32 +45,33 @@ class _LoginDataBlocBuilderState extends State<LoginDataBlocBuilder> {
     ));
   }
 
-
-Future navigateToLoginProfilPage(context, LoginData loginData) async {
-  WidgetsBinding.instance.addPostFrameCallback((_) {
-    Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (_) => LoginProfilPage(loginData: loginData)));
-  });
-}
-
-Widget _builderContent(LoginDataState state) {
-  Widget content = Container();
-  if (state is LoginDataStateInitial) {
-    content = Container();
-  } else if (state is LoginDataLoading) {
-    content = LoadingWidget();
-  } else if (state is LoginDataLoaded) {
-    content = Container();
-    navigateToLoginProfilPage(context, state.loginData);
-  } else if (state is LoginDataError) {
-    if (state.message == TOKEN_EXPIRATION_FAILURE_MESSAGE) {
-        BlocProvider.of<AuthenticationBloc>(context).add(AuthenticateUser(login: widget.login));
-    } 
-    content =
-        MessageDisplay(message: state.message, messageColor: GlobalTheme.errorColor);
+  Future navigateToLoginProfilPage(context, LoginData loginData) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (_) => LoginProfilPage(loginData: loginData)));
+    });
   }
-  return content;
-}
+
+  Widget _builderContent(LoginDataState state) {
+    Widget content = Container();
+    if (state is LoginDataStateInitial) {
+      content = Container();
+    } else if (state is LoginDataLoading) {
+      content = LoadingWidget();
+    } else if (state is LoginDataLoaded) {
+      content = Container();
+      navigateToLoginProfilPage(context, state.loginData);
+    } else if (state is LoginDataError) {
+      if (state.message == TOKEN_EXPIRATION_FAILURE_MESSAGE  && attempt == 1) {
+        attempt = 0;
+        BlocProvider.of<AuthenticationBloc>(context)
+            .add(AuthenticateUser(login: widget.login));
+      }
+      content = MessageDisplay(
+          message: state.message, messageColor: GlobalTheme.errorColor);
+    }
+    return content;
+  }
 }

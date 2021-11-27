@@ -18,7 +18,7 @@ class LoginPersonalInfoCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          PersonalInfoRow(info: "Location", value: loginData.location),
+          // PersonalInfoRow(info: "Location", value: loginData.location),
           PersonalInfoRow(info: "Wallet", value: loginData.wallet),
           PersonalInfoRow(
               info: "Correction Points", value: loginData.correction_point),

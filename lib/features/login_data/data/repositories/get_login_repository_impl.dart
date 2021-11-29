@@ -1,4 +1,5 @@
 import 'package:swifty/core/error/exceptions.dart';
+import 'package:swifty/features/login_data/domain/entities/projects_cursus.dart';
 
 import '../../../../core/network/network_info.dart';
 import '../../../../core/utils/token_utils.dart';
@@ -37,5 +38,11 @@ class LoginDataRepositoryImpl implements LoginDataRepository {
     } on LoginNotFoundException{
       return Left(LoginNotFoundFailure());
     }
+  }
+
+  @override
+  Future<Either<Failure, ProjectsCursus>> mapCursusToProjects(LoginData loginData) {
+    // TODO: implement mapCursusToProjects
+    throw UnimplementedError();
   }
 }

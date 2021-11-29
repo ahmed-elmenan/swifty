@@ -5,6 +5,7 @@ import 'package:swifty/core/error/error_utils.dart';
 import 'package:swifty/features/authentication/domain/entities/token.dart';
 import 'package:swifty/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:swifty/features/authentication/presentation/widgets/search_button.dart';
+import 'package:swifty/features/login_data/data/data_sources/login_data_local_data_source.dart';
 import 'package:swifty/features/login_data/domain/entities/login_data.dart';
 import 'package:swifty/features/login_data/presentation/pages/login_profil_page.dart';
 import '../../../../core/theme/GlobalTheme.dart';
@@ -62,9 +63,34 @@ class _LoginDataBlocBuilderState extends State<LoginDataBlocBuilder> {
       content = LoadingWidget();
     } else if (state is LoginDataLoaded) {
       content = Container();
+      //test
+      // LoginDataRemoteDataSourceImpl data = LoginDataRemoteDataSourceImpl();
+      // final x = data.mapCursusToProjects(state.loginData);
+      // print("================>" + x[21].projectDetails[0].project.name);
+      
+          // x[13].projectDetails.[0]((element) {
+            // print("======> " + x[13].projectDetails[0].project.name);
+          // });
+      
+      // x.forEach((k, v) {
+      //   print("len -=> " + v.projectDetails.length.toString());
+        // if (v.projectDetails != null) {
+        //   print("=====================");
+        //   v.projectDetails.forEach((element) {
+        //     print("=====================");
+        //     print("======> " +element.project.name);
+        //     print("=====================");
+        //   });
+        // }
+        // print("==========XXX===========");
+        // print("Key : $k, Value : ${v.cursusInfo.cursus.name}");
+      // });
+      
+      //test-end
+
       navigateToLoginProfilPage(context, state.loginData);
     } else if (state is LoginDataError) {
-      if (state.message == TOKEN_EXPIRATION_FAILURE_MESSAGE  && attempt == 1) {
+      if (state.message == TOKEN_EXPIRATION_FAILURE_MESSAGE && attempt == 1) {
         attempt = 0;
         BlocProvider.of<AuthenticationBloc>(context)
             .add(AuthenticateUser(login: widget.login));

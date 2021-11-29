@@ -24,6 +24,7 @@ class LoginDataModel extends LoginData {
       @required String email,
       @required List<ProjectDetailsModel> projects_users})
       : super(
+            cursus_users: cursus_users,
             image_url: image_url,
             correction_point: correction_point,
             wallet: wallet,

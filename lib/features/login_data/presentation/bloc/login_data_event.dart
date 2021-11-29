@@ -11,3 +11,9 @@ class FetchLoginData extends LoginDataEvent {
 
   FetchLoginData(this.login, this.token) : super([login, token]);
 }
+
+class ManageCursuses extends LoginDataEvent {
+  LoginData loginData;
+
+  ManageCursuses(this.loginData) : super([loginData]);
+}

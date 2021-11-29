@@ -8,7 +8,6 @@ import '../../domain/usecases/get_authorization_code.dart';
 import '../../domain/usecases/get_token.dart';
 import 'package:logger/logger.dart';
 
-
 part 'authentication_event.dart';
 part 'authentication_state.dart';
 
@@ -18,11 +17,13 @@ class AuthenticationBloc
   final GetToken getToken;
   final Logger logger;
 
-  AuthenticationBloc( 
-      {this.logger, @required this.getAuthorizationCode, @required this.getToken})
+  AuthenticationBloc(
+      {this.logger,
+      @required this.getAuthorizationCode,
+      @required this.getToken})
       : super(AuthenticationInitial());
 
-   @override
+  @override
   void onEvent(AuthenticationEvent event) {
     logger?.d(event.toString());
     super.onEvent(event);
@@ -50,13 +51,13 @@ class AuthenticationBloc
         yield Error(message: ErrorUtils.mapFailureToMessage(failure));
       }, (code) async* {
         final failureOrCode = await getToken(code);
-        yield failureOrCode
-            .fold((failure) => Error(message: ErrorUtils.mapFailureToMessage(failure)), (token) {
+        yield failureOrCode.fold(
+            (failure) =>
+                Error(message: ErrorUtils.mapFailureToMessage(failure)),
+            (token) {
           return Authenticated(token: token);
         });
       });
     }
   }
-
-  
 }

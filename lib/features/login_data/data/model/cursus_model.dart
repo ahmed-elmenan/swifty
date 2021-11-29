@@ -11,8 +11,10 @@ class CursusModel {
   final double level;
   final List<SkillModel> skills;
   final CursusDetails cursus;
+  // final int cursus_id;
 
   CursusModel({this.cursus, this.level, this.skills, this.grade});
+  // CursusModel({this.cursus_id, this.cursus, this.level, this.skills, this.grade});
 
   factory CursusModel.fromJson(Map<String, dynamic> json) =>
       _$CursusModelFromJson(json);

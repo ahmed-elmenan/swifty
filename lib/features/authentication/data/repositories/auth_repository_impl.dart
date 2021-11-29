@@ -41,7 +41,7 @@ class AuthRepositoryImpl implements AuthRepository {
     if (await networkInfo.isConnected) {
       try {
         final token = await remoteDataSource.getToken(code);
-        localDataSource.cacheTokenData(token);
+        await localDataSource.cacheTokenData(token);
         return (Right(token));
       } on ServerException {
         return Left(ServerFailure());

@@ -20,3 +20,9 @@ class LoginDataError extends LoginDataState {
 
   LoginDataError({@required this.message}) : super([message]);
 }
+
+class ProjectsMapedToCursus extends LoginDataState {
+  final ManagedCursus projectCursusMap;
+
+  ProjectsMapedToCursus({@required this.projectCursusMap}) : super([projectCursusMap]);
+}

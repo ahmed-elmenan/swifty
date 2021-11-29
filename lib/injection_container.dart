@@ -5,6 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:http/http.dart' as http;
 import 'core/utils/input_converter.dart';
+import 'features/login_data/data/data_sources/login_data_local_data_source.dart';
+import 'features/login_data/data/model/managed_cursus.dart';
 import 'features/login_data/domain/usecases/get_login_data.dart';
 
 import 'core/network/network_info.dart';
@@ -46,7 +48,9 @@ Future<void> init() async {
   //! Features - Login Data
   // BLoC
   sl.registerFactory(() =>
-      LoginDataBloc(inputConverter: sl(), logger: sl(), getLoginData: sl()));
+      LoginDataBloc(
+        localDataSource: sl(),
+        inputConverter: sl(), logger: sl(), getLoginData: sl())); 
 
   // Use Cases
   sl.registerLazySingleton(() => GetLoginData(sl()));
@@ -58,6 +62,8 @@ Future<void> init() async {
   // Data
   sl.registerLazySingleton<LoginDataRemoteDataSource>(
       () => LoginDataRemoteDataSourceImpl(logger: sl(), client: sl()));
+  sl.registerLazySingleton<LoginDataLocalDataSource>(
+      () => LoginDataLocalDataSourceImpl());
 
   //! Core
   sl.registerLazySingleton<NetworkInfo>(

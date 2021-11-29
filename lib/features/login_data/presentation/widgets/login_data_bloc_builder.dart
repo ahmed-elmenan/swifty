@@ -11,6 +11,7 @@ import 'package:swifty/features/login_data/presentation/pages/login_profil_page.
 import '../../../../core/theme/GlobalTheme.dart';
 import '../../../../core/widgets/loading_widget.dart';
 import '../../../../core/widgets/message_display.dart';
+import '../../../../injection_container.dart';
 import '../bloc/login_data_bloc.dart';
 
 class LoginDataBlocBuilder extends StatefulWidget {
@@ -47,11 +48,13 @@ class _LoginDataBlocBuilderState extends State<LoginDataBlocBuilder> {
   }
 
   Future navigateToLoginProfilPage(context, LoginData loginData) async {
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (_) => LoginProfilPage(loginData: loginData)));
+              builder: (_) =>  LoginProfilPage(loginData: loginData),
+                  ));
     });
   }
 
@@ -64,28 +67,29 @@ class _LoginDataBlocBuilderState extends State<LoginDataBlocBuilder> {
     } else if (state is LoginDataLoaded) {
       content = Container();
       //test
+
       // LoginDataRemoteDataSourceImpl data = LoginDataRemoteDataSourceImpl();
       // final x = data.mapCursusToProjects(state.loginData);
       // print("================>" + x[21].projectDetails[0].project.name);
-      
-          // x[13].projectDetails.[0]((element) {
-            // print("======> " + x[13].projectDetails[0].project.name);
-          // });
-      
+
+      // x[13].projectDetails.[0]((element) {
+      // print("======> " + x[13].projectDetails[0].project.name);
+      // });
+
       // x.forEach((k, v) {
       //   print("len -=> " + v.projectDetails.length.toString());
-        // if (v.projectDetails != null) {
-        //   print("=====================");
-        //   v.projectDetails.forEach((element) {
-        //     print("=====================");
-        //     print("======> " +element.project.name);
-        //     print("=====================");
-        //   });
-        // }
-        // print("==========XXX===========");
-        // print("Key : $k, Value : ${v.cursusInfo.cursus.name}");
+      // if (v.projectDetails != null) {
+      //   print("=====================");
+      //   v.projectDetails.forEach((element) {
+      //     print("=====================");
+      //     print("======> " +element.project.name);
+      //     print("=====================");
+      //   });
+      // }
+      // print("==========XXX===========");
+      // print("Key : $k, Value : ${v.cursusInfo.cursus.name}");
       // });
-      
+
       //test-end
 
       navigateToLoginProfilPage(context, state.loginData);

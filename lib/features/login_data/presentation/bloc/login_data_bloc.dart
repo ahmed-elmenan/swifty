@@ -2,6 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logger/logger.dart';
 import 'package:swifty/core/utils/input_converter.dart';
+import 'package:swifty/features/login_data/data/data_sources/login_data_local_data_source.dart';
+import 'package:swifty/features/login_data/data/model/managed_cursus.dart';
+import 'package:swifty/features/login_data/domain/entities/projects_cursus.dart';
 import '../../../../core/error/error_utils.dart';
 import '../../../authentication/domain/entities/token.dart';
 import '../../../login_data/domain/entities/login_data.dart';
@@ -13,11 +16,13 @@ part 'login_data_state.dart';
 class LoginDataBloc extends Bloc<LoginDataEvent, LoginDataState> {
   final GetLoginData getLoginData;
   final InputConverter inputConverter;
+  final LoginDataLocalDataSource localDataSource;
 
   final Logger logger;
 
   LoginDataBloc(
-      {@required this.inputConverter,
+      {@required this.localDataSource,
+      @required this.inputConverter,
       @required this.logger,
       @required this.getLoginData})
       : super(LoginDataStateInitial());
@@ -56,6 +61,11 @@ class LoginDataBloc extends Bloc<LoginDataEvent, LoginDataState> {
           yield LoginDataLoaded(loginData: loginData);
         });
       });
+    } else if (event is ManageCursuses) {
+      yield LoginDataLoading();
+      final projectCursusMap = 
+          localDataSource.mapCursusToProjects(event.loginData);
+      yield ProjectsMapedToCursus(projectCursusMap: projectCursusMap);
     }
   }
 }

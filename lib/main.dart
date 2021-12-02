@@ -7,6 +7,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
   runApp(MaterialApp(
+    theme: ThemeData(fontFamily: 'futur'),
     home: Logins42SearchPage(),
   ));
 }

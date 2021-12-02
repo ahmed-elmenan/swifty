@@ -5,7 +5,7 @@ import 'package:swifty/features/login_data/domain/entities/login_data.dart';
 class PersonalInfoRow extends StatelessWidget {
   final String info;
   final value;
-  
+
   PersonalInfoRow({Key key, this.info, this.value}) : super(key: key);
 
   @override
@@ -13,7 +13,9 @@ class PersonalInfoRow extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 3),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Text(info, style: GlobalTheme.primaryTextStyle),
+        Text(info,
+            style: GlobalTheme.primaryTextStyle
+                .copyWith(color: GlobalTheme.secondaryColor)),
         Text(value.toString(), style: GlobalTheme.primaryTextStyle),
       ]),
     );

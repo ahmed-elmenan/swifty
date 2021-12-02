@@ -25,7 +25,7 @@ LoginDataModel _$LoginDataModelFromJson(Map<String, dynamic> json) {
             ? null
             : ProjectDetailsModel.fromJson(e as Map<String, dynamic>))
         ?.toList(),
-  );
+  )..loginNotFound = json['loginNotFound'] as int;
 }
 
 Map<String, dynamic> _$LoginDataModelToJson(LoginDataModel instance) =>
@@ -40,4 +40,5 @@ Map<String, dynamic> _$LoginDataModelToJson(LoginDataModel instance) =>
       'wallet': instance.wallet,
       'cursus_users': instance.cursus_users,
       'projects_users': instance.projects_users,
+      'loginNotFound': instance.loginNotFound,
     };

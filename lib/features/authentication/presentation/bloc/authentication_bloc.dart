@@ -55,6 +55,9 @@ class AuthenticationBloc
             (failure) =>
                 Error(message: ErrorUtils.mapFailureToMessage(failure)),
             (token) {
+          logger.d("tokenTest");
+          logger.d(token.access_token);
+          logger.d(token.created_at);
           return Authenticated(token: token);
         });
       });

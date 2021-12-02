@@ -62,9 +62,9 @@ class LoginDataBloc extends Bloc<LoginDataEvent, LoginDataState> {
         });
       });
     } else if (event is ManageCursuses) {
-      yield LoginDataLoading();
       final projectCursusMap = 
           localDataSource.mapCursusToProjects(event.loginData);
+      projectCursusMap.selectedProjects = localDataSource.selectProjectCursus(event.cursusId, projectCursusMap);
       yield ProjectsMapedToCursus(projectCursusMap: projectCursusMap);
     }
   }

@@ -13,6 +13,7 @@ import '../../../../core/widgets/loading_widget.dart';
 import '../../../../core/widgets/message_display.dart';
 import '../../../../injection_container.dart';
 import '../bloc/login_data_bloc.dart';
+import 'navigate_to_home.dart';
 
 class LoginDataBlocBuilder extends StatefulWidget {
   final String login;
@@ -47,17 +48,6 @@ class _LoginDataBlocBuilderState extends State<LoginDataBlocBuilder> {
     ));
   }
 
-  Future navigateToLoginProfilPage(context, LoginData loginData) async {
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (_) =>  LoginProfilPage(loginData: loginData),
-                  ));
-    });
-  }
-
   Widget _builderContent(LoginDataState state) {
     Widget content = Container();
     if (state is LoginDataStateInitial) {
@@ -65,37 +55,15 @@ class _LoginDataBlocBuilderState extends State<LoginDataBlocBuilder> {
     } else if (state is LoginDataLoading) {
       content = LoadingWidget();
     } else if (state is LoginDataLoaded) {
-      content = Container();
-      //test
+      content = NavigateToHome(
+        loginData: state.loginData,
+      );
 
-      // LoginDataRemoteDataSourceImpl data = LoginDataRemoteDataSourceImpl();
-      // final x = data.mapCursusToProjects(state.loginData);
-      // print("================>" + x[21].projectDetails[0].project.name);
-
-      // x[13].projectDetails.[0]((element) {
-      // print("======> " + x[13].projectDetails[0].project.name);
-      // });
-
-      // x.forEach((k, v) {
-      //   print("len -=> " + v.projectDetails.length.toString());
-      // if (v.projectDetails != null) {
-      //   print("=====================");
-      //   v.projectDetails.forEach((element) {
-      //     print("=====================");
-      //     print("======> " +element.project.name);
-      //     print("=====================");
-      //   });
-      // }
-      // print("==========XXX===========");
-      // print("Key : $k, Value : ${v.cursusInfo.cursus.name}");
-      // });
-
-      //test-end
-
-      navigateToLoginProfilPage(context, state.loginData);
+      // navigateToLoginProfilPage(context, state.loginData);
     } else if (state is LoginDataError) {
       if (state.message == TOKEN_EXPIRATION_FAILURE_MESSAGE && attempt == 1) {
         attempt = 0;
+
         BlocProvider.of<AuthenticationBloc>(context)
             .add(AuthenticateUser(login: widget.login));
       }

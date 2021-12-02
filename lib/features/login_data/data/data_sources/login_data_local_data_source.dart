@@ -8,28 +8,40 @@ import 'package:meta/meta.dart';
 
 abstract class LoginDataLocalDataSource {
   ManagedCursus mapCursusToProjects(LoginData loginData);
+  List<ProjectDetailsModel> selectProjectCursus(
+      int cursusId, ManagedCursus managedCursus);
 }
 
 class LoginDataLocalDataSourceImpl extends LoginDataLocalDataSource {
   final managedCursus = ManagedCursus();
 
-  // LoginDataLocalDataSourceImpl({@required this.managedCursus});
-
   @override
   ManagedCursus mapCursusToProjects(LoginData loginData) {
+    // if (managedCursus.projectCursusMap[0] != null) print("object => " + managedCursus.projectCursusMap[0].projectDetails.length.toString());
+
     _collectLoginCursusInfo(loginData);
     _cursusMapingProcess(loginData);
 
     return managedCursus;
   }
 
+  @override
+  List<ProjectDetailsModel> selectProjectCursus(
+      int cursusId, ManagedCursus managedCursus) {
+    managedCursus.selectedIndex = cursusId;
+    if (cursusId != -1){
+    return managedCursus.projectCursusMap[cursusId].projectDetails;
+    }
+  }
+
   _collectLoginCursusInfo(LoginData loginData) {
     int i = 0;
+    managedCursus.cursusNames = [];
     loginData.cursus_users.forEach((cursus) {
       managedCursus.projectCursusMap[cursus.cursus.id] = ProjectsCursus(
         cursusInfo: cursus,
       );
-      print(++i);
+
       managedCursus.cursusNames.add(cursus.cursus.name);
       managedCursus.cursusNamesMap[cursus.cursus.name] = cursus.cursus.id;
     });

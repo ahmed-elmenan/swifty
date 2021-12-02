@@ -5,4 +5,5 @@ class GlobalTheme {
   static TextStyle primaryTextStyle = TextStyle(color: Colors.white);
   static Color secondaryColor = Color(0xff00babc);
   static Color secondaryBgColor = Colors.black.withOpacity(0.6);
+  static Color homeBgColor = Colors.grey[200];
 }

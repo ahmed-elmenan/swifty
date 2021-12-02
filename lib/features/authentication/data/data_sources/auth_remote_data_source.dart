@@ -41,7 +41,6 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         body: _requestBody(code.code));
     if (response.statusCode == 200) {
       final parsedJson = json.decode(response.body);
-      logger.d(parsedJson);
       return TokenModel.fromJson(parsedJson);
     } else {
       throw ServerException();
@@ -49,7 +48,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   String _urlRefactor() =>
-      API_URL + AuthorizationCodeModel.authorizationEndPoint +
+      API_URL +
+      AuthorizationCodeModel.authorizationEndPoint +
       '?' +
       Uri(queryParameters: AuthorizationCodeModel.queryParams).query;
 

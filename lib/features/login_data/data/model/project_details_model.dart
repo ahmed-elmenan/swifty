@@ -9,7 +9,6 @@ class ProjectDetailsModel {
   int occurrence;
   int final_mark;
   String status;
-  bool validated;
   int current_team_id;
   ProjectModel project;
   List<int> cursus_ids;
@@ -18,6 +17,9 @@ class ProjectDetailsModel {
   String retriable_at;
   String created_at;
   String updated_at;
+
+  @JsonKey(name: "validated?")
+  bool validated;
 
   ProjectDetailsModel(
       {this.id,

@@ -30,8 +30,10 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<AuthorizationCodeModel> getAuthorizationCode() async {
     final result = await FlutterWebAuth.authenticate(
         url: _urlRefactor(), callbackUrlScheme: REDIRECT_SCHEME);
-    return AuthorizationCodeModel(
-        code: Uri.parse(result).queryParameters['code']);
+    final code =
+        AuthorizationCodeModel(code: Uri.parse(result).queryParameters['code']);
+    print("code = " + code.code);
+    return code;
   }
 
   @override

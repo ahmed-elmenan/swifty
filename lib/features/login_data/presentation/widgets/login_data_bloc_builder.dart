@@ -7,7 +7,6 @@ import 'package:swifty/features/authentication/presentation/bloc/authentication_
 import 'package:swifty/features/authentication/presentation/widgets/search_button.dart';
 import 'package:swifty/features/login_data/data/data_sources/login_data_local_data_source.dart';
 import 'package:swifty/features/login_data/domain/entities/login_data.dart';
-import 'package:swifty/features/login_data/presentation/pages/login_profil_page.dart';
 import '../../../../core/theme/GlobalTheme.dart';
 import '../../../../core/widgets/loading_widget.dart';
 import '../../../../core/widgets/message_display.dart';

@@ -8,7 +8,6 @@ part of 'skill_model.dart';
 
 SkillModel _$SkillModelFromJson(Map<String, dynamic> json) {
   return SkillModel(
-    json['id'] as int,
     json['name'] as String,
     (json['level'] as num)?.toDouble(),
   );
@@ -16,7 +15,6 @@ SkillModel _$SkillModelFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$SkillModelToJson(SkillModel instance) =>
     <String, dynamic>{
-      'id': instance.id,
       'name': instance.name,
       'level': instance.level,
     };

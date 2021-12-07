@@ -39,14 +39,14 @@ class _SearchBlocBuilderState extends State<SearchBlocBuilder> {
     } else if (state is Loading) {
       content = LoadingWidget();
     } else if (state is Authenticated) {
+      print("object  ahoooow");
       content = Container();
       BlocProvider.of<LoginDataBloc>(context)
           .add(FetchLoginData(widget.login, state.token));
     } else if (state is Error) {
-      content =
-          MessageDisplay(message: state.message, messageColor: GlobalTheme.errorColor);
+      content = MessageDisplay(
+          message: state.message, messageColor: GlobalTheme.errorColor);
     }
     return content;
   }
-
 }

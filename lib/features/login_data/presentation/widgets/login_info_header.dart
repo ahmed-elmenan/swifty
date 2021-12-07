@@ -37,6 +37,7 @@ class _LoginInfoHeaderState extends State<LoginInfoHeader> {
                 LoginPersonalInfoCard(loginData: widget.loginData, projectCursus: widget.projectCursus),
                 LocationWidget(location: widget.loginData.location),
                 CursusLevelProgress(projectCursus: widget.projectCursus)
+                
               ],
             ),
           ),

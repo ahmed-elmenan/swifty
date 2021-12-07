@@ -63,57 +63,63 @@ class _LoginProfilPageState extends State<LoginProfilPage> {
         _pushLogins42SearchPage();
         return Future.value(false);
       },
-      child: Scaffold(
-        body: new BlocBuilder<LoginDataBloc, LoginDataState>(
-          builder: (context, state) {
-            Widget content;
-            if (state is LoginDataStateInitial) {
-              content = Container();
-            } else if (state is LoginDataLoading) {
-              content = LoadingWidget();
-            } else if (state is ProjectsMapedToCursus) {
-              projectCursus = state.projectCursusMap;
+      child: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          body: new BlocBuilder<LoginDataBloc, LoginDataState>(
+            builder: (context, state) {
+              Widget content;
+              if (state is LoginDataStateInitial) {
+                content = Container();
+              } else if (state is LoginDataLoading) {
+                content = LoadingWidget();
+              } else if (state is ProjectsMapedToCursus) {
+                projectCursus = state.projectCursusMap;
 
-              content = Container(
-                color: GlobalTheme.homeBgColor,
-                child: CustomScrollView(
-                  slivers: <Widget>[
-                    SliverAppBar(
-                      title: Center(child: Text(widget.loginData.login)),
-                      leading: IconButton(
-                        icon: Icon(
-                          Icons.chevron_left,
-                          size: 30,
+                content = Container(
+                  color: GlobalTheme.homeBgColor,
+                  child: DefaultTabController(
+                    length: 2,
+                    child: CustomScrollView(
+                      slivers: <Widget>[
+                        SliverAppBar(
+                          title: Center(child: Text(widget.loginData.login)),
+                          leading: IconButton(
+                            icon: Icon(
+                              Icons.chevron_left,
+                              size: 30,
+                            ),
+                            onPressed: () {
+                              _pushLogins42SearchPage();
+                            },
+                          ),
+                          actions: <Widget>[
+                            LoginAvatar(imageUrl: widget.loginData.image_url),
+                          ],
+                          expandedHeight: size.height / 3 + 50,
+                          floating: true,
+                          pinned: true,
+                          snap: true,
+                          elevation: 50,
+                          flexibleSpace: FlexibleSpaceBar(
+                            centerTitle: true,
+                            background: Center(
+                                child: LoginInfoHeader(
+                                    loginData: widget.loginData,
+                                    projectCursus: projectCursus)),
+                          ),
                         ),
-                        onPressed: () {
-                          _pushLogins42SearchPage();
-                        },
-                      ),
-                      actions: <Widget>[
-                        LoginAvatar(imageUrl: widget.loginData.image_url),
+                        SliverList(
+                            delegate: new SliverChildListDelegate(
+                                _buildList(state.projectCursusMap, size)))
                       ],
-                      expandedHeight: size.height / 3 + 50,
-                      floating: true,
-                      pinned: true,
-                      snap: true,
-                      elevation: 50,
-                      flexibleSpace: FlexibleSpaceBar(
-                        centerTitle: true,
-                        background: Center(
-                            child: LoginInfoHeader(
-                                loginData: widget.loginData,
-                                projectCursus: projectCursus)),
-                      ),
                     ),
-                    SliverList(
-                        delegate: new SliverChildListDelegate(
-                            _buildList(15, state.projectCursusMap)))
-                  ],
-                ),
-              );
-            }
-            return content;
-          },
+                  ),
+                );
+              }
+              return content;
+            },
+          ),
         ),
       ),
     );
@@ -124,21 +130,21 @@ class _LoginProfilPageState extends State<LoginProfilPage> {
         context, MaterialPageRoute(builder: (_) => Logins42SearchPage()));
   }
 
-  List _buildList(int count, ManagedCursus managedCursus) {
-    List<Widget> listItems = [];
+  List _buildList(ManagedCursus managedCursus, Size size) {
+    List<Widget> listProjects = [];
+
     if (managedCursus.selectedProjects != null) {
       int len = managedCursus.selectedProjects.length;
       for (int i = 0; i < len; i++) {
-        listItems.add(
+        listProjects.add(
           Padding(
               padding: new EdgeInsets.all(8.0),
               child: ProjectDetailsCard(
                   managedCursus: managedCursus.selectedProjects[i])),
         );
       }
-    } else {
-      listItems.add(MessageDisplay(message: "No Data To Show"));
+
     }
-    return listItems;
+      return listProjects;
   }
 }

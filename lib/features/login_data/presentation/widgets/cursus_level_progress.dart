@@ -14,8 +14,8 @@ class CursusLevelProgress extends StatelessWidget {
         ? 0
         : projectCursus.projectCursusMap[selectedCursusId].cursusInfo.level;
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10),
       child: LinearPercentIndicator(
-        //leaner progress bar
         // width: MediaQuery.of(context).size.width, //width for progress bar
         animation: true, //animation to show progress at first
         animationDuration: 1000,

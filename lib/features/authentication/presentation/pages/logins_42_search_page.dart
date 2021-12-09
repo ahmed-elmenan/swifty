@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:swifty/core/theme/GlobalTheme.dart';
 import 'package:swifty/features/login_data/presentation/bloc/login_data_bloc.dart';
 import 'package:swifty/features/login_data/presentation/widgets/login_data_bloc_builder.dart';
 import '../../data/data_sources/auth_local_data_source.dart';
@@ -30,38 +31,55 @@ class _Logins42SearchPageState extends State<Logins42SearchPage> {
           ),
         ],
         child: Container(
-          color: Colors.grey[50],
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Form(
-                child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 7, horizontal: 17),
-                  decoration: BoxDecoration(
-                    color: Colors.grey[200],
-                    borderRadius: BorderRadius.circular(32),
-                  ),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: "enter a 42 login",
-                      hintStyle: TextStyle(
-                        color: Color(0xFF979BA3),
-                      ),
-                      // filled: true,
-                      border: InputBorder.none,
+          color: Color(0xff000000),
+          child: Center(
+            child: ListView(
+              shrinkWrap: true,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      "assets/images/42_logo.jpeg",
+                      height: 100,
                     ),
-                    onChanged: (value) {
-                      setState(() {
-                        login = value;
-                      });
-                    },
-                  ),
+                    Form(
+                      child: Container(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 7, horizontal: 30),
+                        margin:
+                            EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                        decoration: BoxDecoration(
+                          color: GlobalTheme.homeCardColor,
+                          borderRadius: BorderRadius.circular(32),
+                        ),
+                        child: TextField(
+                          style: TextStyle(color: Colors.white),
+                          decoration: InputDecoration(
+                            hintText: "enter a 42 login",
+                            hintStyle: TextStyle(
+                              fontSize: 16,
+                              color: Color(0xFF979BA3),
+                            ),
+                            // filled: true,
+                            border: InputBorder.none,
+                          ),
+                          onChanged: (value) {
+                            setState(() {
+                              login = value;
+                            });
+                          },
+                        ),
+                      ),
+                    ),
+                    LoginDataBlocBuilder(login: login),
+                    SearchBlocBuilder(login: login),
+                    SearchButton(login: login)
+                  ],
                 ),
-              ),
-              LoginDataBlocBuilder(login: login),
-              SearchBlocBuilder(login: login),
-              SearchButton(login: login)
-            ],
+              ],
+            ),
           ),
         ),
       ),

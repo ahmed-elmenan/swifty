@@ -11,21 +11,19 @@ class CursusDropDownButton extends StatefulWidget {
   final LoginData loginData;
   final ManagedCursus projectCursus;
 
-  const CursusDropDownButton({Key key, this.projectCursus, this.loginData}) : super(key: key);
+  const CursusDropDownButton({Key key, this.projectCursus, this.loginData})
+      : super(key: key);
 
   @override
   _CursusDropDownButtonState createState() => _CursusDropDownButtonState();
 }
 
 class _CursusDropDownButtonState extends State<CursusDropDownButton> {
-  List x = ['Asssssssss', 'B', 'C', 'D'];
   String selectedValue;
   List<String> cursusNamesList;
-  Map m = {};
 
   @override
   void initState() {
-    // TODO: implement initState
     cursusNamesList = widget.projectCursus.cursusNames;
     selectedValue = cursusNamesList[0];
     super.initState();
@@ -34,33 +32,34 @@ class _CursusDropDownButtonState extends State<CursusDropDownButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
+        height: 20,
         child: DropdownButton<String>(
-      iconSize: 12,
-      style: GlobalTheme.primaryTextStyle.copyWith(color: Colors.black),
-      icon: FaIcon(FontAwesomeIcons.chevronDown, color: Colors.white),
-      hint: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        child: Text(selectedValue,
-            textAlign: TextAlign.center, style: GlobalTheme.primaryTextStyle),
-      ),
-      underline: Container(),
-      items: cursusNamesList.map((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Padding(
+          iconSize: 12,
+          style: GlobalTheme.primaryTextStyle.copyWith(color: Colors.black),
+          icon: FaIcon(FontAwesomeIcons.chevronDown, color: Colors.white),
+          hint: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Text(value),
+            child: Text(selectedValue,
+                textAlign: TextAlign.center,
+                style: GlobalTheme.primaryTextStyle),
           ),
-        );
-      }).toList(),
-      onChanged: (value) {
-        setState(() {
-          selectedValue = value;
-          LoginDataBlocDispatcher.dispatchMapProjectsToCursusEvent(
-        context, widget.loginData, widget.projectCursus.cursusNamesMap[value]);
-        });
-      },
-    ));
+          underline: Container(),
+          items: cursusNamesList.map((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text(value),
+              ),
+            );
+          }).toList(),
+          onChanged: (value) {
+            setState(() {
+              selectedValue = value;
+              LoginDataBlocDispatcher.dispatchMapProjectsToCursusEvent(context,
+                  widget.loginData, widget.projectCursus.cursusNamesMap[value]);
+            });
+          },
+        ));
   }
-
 }

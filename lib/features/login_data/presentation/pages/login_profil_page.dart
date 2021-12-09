@@ -11,6 +11,7 @@ import 'package:swifty/features/login_data/data/model/managed_cursus.dart';
 import 'package:swifty/features/login_data/domain/entities/login_data.dart';
 import 'package:swifty/features/login_data/domain/entities/projects_cursus.dart';
 import 'package:swifty/features/login_data/presentation/bloc/login_data_bloc.dart';
+import 'package:swifty/features/login_data/presentation/widgets/empty_data_message.dart';
 import 'package:swifty/features/login_data/presentation/widgets/login_avatar.dart';
 import 'package:swifty/features/login_data/presentation/widgets/login_info_header.dart';
 import 'package:swifty/features/login_data/presentation/widgets/project_details_card.dart';
@@ -58,6 +59,8 @@ class _LoginProfilPageState extends State<LoginProfilPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
     return WillPopScope(
       onWillPop: () {
         _pushLogins42SearchPage();
@@ -83,6 +86,7 @@ class _LoginProfilPageState extends State<LoginProfilPage> {
                     child: CustomScrollView(
                       slivers: <Widget>[
                         SliverAppBar(
+                          backgroundColor: GlobalTheme.homeBgColor,
                           title: Center(child: Text(widget.loginData.login)),
                           leading: IconButton(
                             icon: Icon(
@@ -96,7 +100,9 @@ class _LoginProfilPageState extends State<LoginProfilPage> {
                           actions: <Widget>[
                             LoginAvatar(imageUrl: widget.loginData.image_url),
                           ],
-                          expandedHeight: size.height / 3 + 50,
+                          expandedHeight: isLandscape
+                              ? size.height - 70
+                              : size.height / 3 + 70,
                           floating: true,
                           pinned: true,
                           snap: true,
@@ -135,6 +141,7 @@ class _LoginProfilPageState extends State<LoginProfilPage> {
 
     if (managedCursus.selectedProjects != null) {
       int len = managedCursus.selectedProjects.length;
+
       for (int i = 0; i < len; i++) {
         listProjects.add(
           Padding(
@@ -143,8 +150,8 @@ class _LoginProfilPageState extends State<LoginProfilPage> {
                   managedCursus: managedCursus.selectedProjects[i])),
         );
       }
-
-    }
-      return listProjects;
+    } else
+      listProjects.add(EmptyDataMessage());
+    return listProjects;
   }
 }

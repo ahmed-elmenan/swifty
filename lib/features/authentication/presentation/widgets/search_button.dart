@@ -46,7 +46,9 @@ class _SearchButtonState extends State<SearchButton> {
         ),
         onPressed: () async {
           Token token = await localDataSource.getCachedTokenData();
-          // print(token.access_token + "+++++++++++++++++++++++++");
+          // print("================================");
+          // print("Cached token = " + token.access_token);
+          // print("================================");
           (token != null)
               ? dispatchLoginSearchEvent(widget.login, token)
               : dispatchAuthenticationEvent(widget.login);

@@ -4,7 +4,6 @@ import 'package:logger/logger.dart';
 import 'package:swifty/core/utils/input_converter.dart';
 import 'package:swifty/features/login_data/data/data_sources/login_data_local_data_source.dart';
 import 'package:swifty/features/login_data/data/model/managed_cursus.dart';
-import 'package:swifty/features/login_data/domain/entities/projects_cursus.dart';
 import '../../../../core/error/error_utils.dart';
 import '../../../authentication/domain/entities/token.dart';
 import '../../../login_data/domain/entities/login_data.dart';
